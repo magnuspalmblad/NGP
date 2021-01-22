@@ -1,3 +1,6 @@
 Summary of simulation results
 
 File  Description
+amino_acid_frequencies.csv  table of amino acid frequencies in NeXtProt (202101015)
+read4_max50_missed1.csv 100 simulations of reading 4 amino acids, maximum read length 50 and allowing 1 missed tryptic cleavage
+read6_max50_missed1.csv 100 simulations of reading 6 amino acids, maximum read length 50 and allowing 1 missed tryptic cleavage
