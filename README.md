@@ -4,7 +4,7 @@ This repository is a collection of next-generation proteomics (NGP) simulation a
 The "simulations.R" script is has no inputs, but these parameters are defined in the beginning of the script:
 
 | Parameter        | Type    | Meaning                                                            |
-| ---------------- |---------| -+-----------------------------------------------------------------|
+| ---------------- |---------| -------------------------------------------------------------------|
 | MAX_LENGTH       | integer | The maximum peptide read length considered                         |
 | MISSED_CLEAVAGES | integer | The maximum number of missed cleavage sites                        |
 | ENZYME           | string  | The proteolytic enzyme simulated (e.g. "trypsin")                  |
