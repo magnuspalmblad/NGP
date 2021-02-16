@@ -19,5 +19,3 @@ The seed for the random number generator is set by set.seed(). Running simulatio
 The "plots.R" makes pretty visualizations from the simulations using ggplot2. It also uses multidimensional linear regression to determine the relative discrimination power of the different amino acids. This R script was used to produce the figures in the JPR technical note describing the generic simulations of single-molecule/next-generation proteomics.
 
 The scripts are written in R for maximum readability. For deeper simulations, refactoring them in C/C++ will likely be beneficial.
-
-$\binom{n}{k}$
