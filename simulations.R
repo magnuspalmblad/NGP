@@ -23,7 +23,7 @@ proteins <-
          nextprot[1:N_PROTEINS],
          keytype = "NEXTPROT",
          columns = c("SEQUENCE"))
-names(proteins) <- nextprot[1:N_PROTEINS]
+rownames(proteins) <- nextprot[1:N_PROTEINS]
 
 ## in-silco digestion of the protein sequences
 peptides <-
@@ -59,7 +59,7 @@ for (run in 1:N_SIMULATIONS) {
       x <- gsub("[[:space:]]", "", x) # remove whitespace (including \n)
       x <- gsub(invisible, "-", x) # replace invisible aa's with "-"
       digest[[i]] <- x # add vector of possible peptide reads for protein i
-      if (IDEAL == FALSE) {
+      if (!IDEAL) {
         for (x1 in x) {
           for (j in 1:nchar(x1)) # simulate non-ideal situation, allowing - to be --
           {
