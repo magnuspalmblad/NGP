@@ -3,9 +3,9 @@ library(ggsci)
 library(gridExtra)
 
 ## read data and construct data frames for panel A
-A10<-as.matrix(read.csv("max10_missed1.csv", header = FALSE, sep = ","), byrow = TRUE)
-A20<-as.matrix(read.csv("max20_missed1.csv", header = FALSE, sep = ","), byrow = TRUE)
-A50<-as.matrix(read.csv("max50_missed1.csv", header = FALSE, sep = ","), byrow = TRUE)
+A10<-as.matrix(read.csv("./simulation_results/max10_missed1.csv", header = FALSE, sep = ","), byrow = TRUE)
+A20<-as.matrix(read.csv("./simulation_results/max20_missed1.csv", header = FALSE, sep = ","), byrow = TRUE)
+A50<-as.matrix(read.csv("./simulation_results/max50_missed1.csv", header = FALSE, sep = ","), byrow = TRUE)
 A<-rbind(A10, A20, A50)
 dfA1 <- data.frame(x = rep(1:20, 60),
                    y = as.vector(t(A)),
@@ -21,8 +21,8 @@ dfA4 <- data.frame(x = 1:20,
                    maxlen = rep("50", 20))
 
 ## read data and construct data frames for panel B
-B0<-as.matrix(read.csv("max50_missed0.csv", header = FALSE, sep = ","), byrow = TRUE)
-B1<-as.matrix(read.csv("max50_missed1.csv", header = FALSE, sep = ","), byrow = TRUE)
+B0<-as.matrix(read.csv("./simulation_results/max50_missed0.csv", header = FALSE, sep = ","), byrow = TRUE)
+B1<-as.matrix(read.csv("./simulation_results/max50_missed1.csv", header = FALSE, sep = ","), byrow = TRUE)
 B<-rbind(B0, B1)
 dfB1 <- data.frame(x = rep(1:20, 40),
                   y = as.vector(t(B)),
@@ -35,8 +35,8 @@ dfB3 <- data.frame(x = 1:20,
                    missed_cleavages = rep("1", 20))
 
 ## read data and construct data frames for panel C
-C4 <- as.matrix(read.csv("read4_max5_100_missed1.csv", header = FALSE, sep = ","), byrow = TRUE)
-C10 <- as.matrix(read.csv("read10_max5_100_missed1.csv", header = FALSE, sep = ","), byrow = TRUE)
+C4 <- as.matrix(read.csv("./simulation_results/read4_max5_100_missed1.csv", header = FALSE, sep = ","), byrow = TRUE)
+C10 <- as.matrix(read.csv("./simulation_results/read10_max5_100_missed1.csv", header = FALSE, sep = ","), byrow = TRUE)
 C <- rbind(C4, C10)
 dfC1 <- data.frame(x = rep(5*(1:20), 40),
                    y = as.vector(t(C)),
@@ -49,9 +49,9 @@ dfC3 <- data.frame(x = 5*(1:20),
                    n_read = rep("10", 20))
 
 ## read data and construct data frames for panel D
-D4 <- read.csv("read4_max50_missed1.csv", header = FALSE, sep = ",")
-D5 <- read.csv("read5_max50_missed1.csv", header = FALSE, sep = ",")
-D6 <- read.csv("read6_max50_missed1.csv", header = FALSE, sep = ",")
+D4 <- read.csv("./simulation_results/read4_max50_missed1.csv", header = FALSE, sep = ",")
+D5 <- read.csv("./simulation_results/read5_max50_missed1.csv", header = FALSE, sep = ",")
+D6 <- read.csv("./simulation_results/read6_max50_missed1.csv", header = FALSE, sep = ",")
 D <- rbind(D4, D5, D6)
 nA<-c(); nR<-c(); nN<-c(); nD<-c(); nC<-c(); nE<-c(); nQ<-c(); nG<-c(); nH<-c(); nI<-c();
 nL<-c(); nK<-c(); nM<-c(); nF<-c(); nP<-c(); nS<-c(); nT<-c(); nW<-c(); nY<-c(); nV<-c();
@@ -83,7 +83,7 @@ for (i in 1:dim(D)[1]) {
 min(sum(nA), sum(nR), sum(nN), sum(nD), sum(nC), sum(nE), sum(nQ), sum(nG), sum(nH), sum(nI), sum(nL), sum(nK), sum(nM), sum(nF), sum(nP), sum(nS), sum(nT), sum(nW), sum(nY), sum(nV))
 fit <- lm(PLURs ~ nA+nR+nN+nD+nC+nE+nQ+nG+nH+nI+nL+nK+nM+nF+nP+nS+nT+nW+nY+nV)
 PLUR_coeffs <- coefficients(fit)[1] + as.vector(coefficients(fit))[2:21] # add intercept
-aa_freqs <- read.csv(file = "amino_acid_frequencies.csv", header = FALSE, sep = ",")
+aa_freqs <- read.csv(file = "./simulation_results/amino_acid_frequencies.csv", header = FALSE, sep = ",")
 colnames(aa_freqs) <- c("aa", "x")
 dfD <- data.frame(x = as.vector(aa_freqs[2]/sum(aa_freqs[2])),
                   y = PLUR_coeffs[1:20],
@@ -91,8 +91,8 @@ dfD <- data.frame(x = as.vector(aa_freqs[2]/sum(aa_freqs[2])),
 
 
 ## read data and construct data frames for Figure 3
-A50<-as.matrix(read.csv("max50_missed1.csv", header = FALSE, sep = ","), byrow = TRUE)
-NI<-as.matrix(read.csv("non_ideal_max50_missed1_first20.csv", header = FALSE, sep = ","), byrow = TRUE)
+A50<-as.matrix(read.csv("./simulation_results/max50_missed1.csv", header = FALSE, sep = ","), byrow = TRUE)
+NI<-as.matrix(read.csv("./simulation_results/non_ideal_max50_missed1_first20.csv", header = FALSE, sep = ","), byrow = TRUE)
 NI<-rbind(A50[1,1:20], NI)
 dfNI1 <- data.frame(x = rep(1:20, 2),
                     y = as.vector(t(NI)),
