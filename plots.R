@@ -2,6 +2,8 @@ library(ggplot2)
 library(ggsci)
 library(gridExtra)
 
+N_PROTEINS <- 20322 # (maximum) number of proteins that could be identified (for reference)
+
 ## read data and construct data frames for panel A
 A10<-as.matrix(read.csv("./simulation_results/max10_missed1.csv", header = FALSE, sep = ","), byrow = TRUE)
 A20<-as.matrix(read.csv("./simulation_results/max20_missed1.csv", header = FALSE, sep = ","), byrow = TRUE)
@@ -56,7 +58,7 @@ D <- rbind(D4, D5, D6)
 nA<-c(); nR<-c(); nN<-c(); nD<-c(); nC<-c(); nE<-c(); nQ<-c(); nG<-c(); nH<-c(); nI<-c();
 nL<-c(); nK<-c(); nM<-c(); nF<-c(); nP<-c(); nS<-c(); nT<-c(); nW<-c(); nY<-c(); nV<-c();
 nX<-c()
-PLURs <- 20322 - as.numeric(D[,2]) # PLUR = Proteins Lacking Unique Reads
+PLURs <- N_PROTEINS - as.numeric(D[,2]) # PLUR = Proteins Lacking Unique Reads
 for (i in 1:dim(D)[1]) {
   nA[i] <- sum(charToRaw(D[i,1]) == charToRaw('A'))
   nR[i] <- sum(charToRaw(D[i,1]) == charToRaw('R'))
@@ -98,6 +100,14 @@ dfNI1 <- data.frame(x = rep(1:20, 2),
                     y = as.vector(t(NI)),
                     maxlen = c(rep("ideal", 20), rep("non-ideal",20)))
 
+## read unique peptide counts and construct data frames for additional figure 
+IPC <- as.matrix(read.csv("./simulation_results/max50_missed1_counts_ideal.csv", header = FALSE, sep = ","), byrow = TRUE)
+NIPC <- as.matrix(read.csv("./simulation_results/max50_missed1_counts_nonideal.csv", header = FALSE, sep = ","), byrow = TRUE)
+PC <- rbind(IPC, NIPC)
+dfPC <- data.frame(x = rep(1:20, 40),
+                    y = as.vector(t(PC)),
+                    maxlen = c(rep("ideal", 400), rep("non-ideal",400)))
+
 
 ## plot number of protein with unique reads as function of read amino acids
 plotA <- ggplot(NULL, aes(x, y, color = maxlen)) +
@@ -112,6 +122,7 @@ plotA <- ggplot(NULL, aes(x, y, color = maxlen)) +
   geom_line(data = dfA2, size = 1) +
   geom_line(data = dfA3, size = 1) +
   geom_line(data = dfA4, size = 1) +
+  geom_hline(yintercept = N_PROTEINS, linetype = "dotted") +
   scale_x_continuous(limits = c(1,20), breaks = c(1:9,10,12,14,16,18,20), minor_breaks = 1:20) +
   scale_y_log10(limits = c(200,21000), breaks = c(300, 1000, 3000, 10000), minor_breaks = rep(1:9, 21)*(10^rep(-10:10, each=9))) +
   xlab('readable amino acids') +
@@ -119,7 +130,7 @@ plotA <- ggplot(NULL, aes(x, y, color = maxlen)) +
   labs(tag = "A", color = "maximum read length") +
   theme_bw() +
   theme(aspect.ratio=1) +
-  theme(legend.position = c(0.737, 0.812),
+  theme(legend.position = c(0.737, 0.772),
         legend.key = element_rect(colour = NA, fill = NA),
         legend.background = element_rect(fill = alpha("white", 0)))
 
@@ -135,6 +146,7 @@ plotB <- ggplot(NULL, aes(x, y, color = missed_cleavages)) +
   ) +
   geom_line(data = dfB2, size = 1) +
   geom_line(data = dfB3, size = 1) +
+  geom_hline(yintercept = N_PROTEINS, linetype = "dotted") +
   scale_x_continuous(limits = c(1,20), breaks = c(1:9,10,12,14,16,18,20), minor_breaks = 1:20) +
   scale_y_log10(limits = c(200,21000), breaks = c(300, 1000, 3000, 10000), minor_breaks = rep(1:9, 21)*(10^rep(-10:10, each=9))) +
   xlab('readable amino acids') +
@@ -142,7 +154,7 @@ plotB <- ggplot(NULL, aes(x, y, color = missed_cleavages)) +
   labs(tag = "B", color = "missed cleavages") +
   theme_bw() +
   theme(aspect.ratio=1) +
-  theme(legend.position = c(0.77, 0.85),
+  theme(legend.position = c(0.77, 0.81),
         legend.key = element_rect(colour = NA, fill = NA),
         legend.background = element_rect(fill = alpha("white", 0)))
 
@@ -156,10 +168,9 @@ plotC <- ggplot(NULL, aes(x, y, color = factor(sort(as.numeric(n_read))))) +
     size = 3,
     stroke = 0
   ) +
-  geom_line(data = dfC2,
-            size = 1) +
-  geom_line(data = dfC3,
-            size = 1) +
+  geom_line(data = dfC2, size = 1) +
+  geom_line(data = dfC3, size = 1) +
+  geom_hline(yintercept = N_PROTEINS, linetype = "dotted") +
   scale_x_continuous(limits = c(0, 100), breaks = 10*(0:10), minor_breaks = 5*0:20) +
   scale_y_log10(limits = c(200, 21000), breaks = c(300, 1000, 3000, 10000), minor_breaks = rep(1:9, 21)*(10^rep(-10:10, each=9))) +
   xlab("maximum read length") +
@@ -167,7 +178,7 @@ plotC <- ggplot(NULL, aes(x, y, color = factor(sort(as.numeric(n_read))))) +
   labs(tag = "C", color = "readable amino acids") +
   theme_bw() +
   theme(aspect.ratio=1) +
-  theme(legend.position = c(0.74, 0.85),
+  theme(legend.position = c(0.74, 0.81),
         legend.key = element_rect(colour = NA, fill = NA),
         legend.background = element_rect(fill = alpha("white", 0)))
 
@@ -183,8 +194,6 @@ plotD <- ggplot(NULL, aes(x, y, label = aa)) +
     color = rgb(0,114/256,181/256)
   ) +
   geom_text(data = dfD, aes(fontface = "bold"), nudge_x = 0, nudge_y = 1, color = rgb(0,114/256,181/256)) +
-
-  #ylim(19750, 20100) +
   scale_x_continuous(labels = scales::percent_format(accuracy = 1), breaks = 1:10/100, minor_breaks = NULL) +
   xlab('amino acid frequency') +
   ylab('discriminative power (proteins)') +
@@ -202,8 +211,7 @@ plotNI <- ggplot(NULL, aes(x, y, color = maxlen)) +
     size = 3,
     stroke = 0
   ) +
-  #geom_line(data = dfNI2, size = 1) +
-  #geom_line(data = dfNI3, size = 1) +
+  geom_hline(yintercept = N_PROTEINS, linetype = "dotted") +
   scale_x_continuous(limits = c(1,20), breaks = c(1:9,10,12,14,16,18,20), minor_breaks = 1:20) +
   scale_y_log10(limits = c(200,21000), breaks = c(300, 1000, 3000, 10000), minor_breaks = rep(1:9, 21)*(10^rep(-10:10, each=9))) +
   xlab('readable amino acids') +
@@ -211,10 +219,43 @@ plotNI <- ggplot(NULL, aes(x, y, color = maxlen)) +
   labs(tag = " ", color = "conditions") +
   theme_bw() +
   theme(aspect.ratio=1) +
-  theme(legend.position = c(0.83, 0.85),
+  theme(legend.position = c(0.83, 0.81),
+        legend.key = element_rect(colour = NA, fill = NA),
+        legend.background = element_rect(fill = alpha("white", 0)))
+
+## plot unique possible peptide reads in ideal vs non-ideal case (for read length <=50, 1 missed)
+plotPC <- ggplot(NULL, aes(x, y, color = maxlen)) +
+  scale_color_nejm() +
+  geom_point(
+    data = dfPC,
+    alpha = 0.4,
+    shape = 16,
+    size = 3,
+    stroke = 0
+  ) +
+  scale_x_continuous(limits = c(1,20), breaks = c(1:9,10,12,14,16,18,20), minor_breaks = 1:20) +
+  scale_y_log10(limits = c(20000,10000000), breaks = c(30000, 100000, 300000, 1000000, 3000000, 10000000), minor_breaks = rep(1:9, 21)*(10^rep(-10:10, each=9))) +
+  xlab('readable amino acids') +
+  ylab('unique possible peptide reads') +
+  labs(tag = " ", color = "conditions") +
+  theme_bw() +
+  theme(aspect.ratio=1) +
+  theme(legend.position = c(0.83, 0.15),
         legend.key = element_rect(colour = NA, fill = NA),
         legend.background = element_rect(fill = alpha("white", 0)))
 
 
 ## plot all four panels A-D
-grid.arrange(plotA,plotB,plotC,plotD, ncol=2, padding = NULL)
+grid.arrange(plotA, plotB, plotC, plotD, ncol = 2, padding = NULL)
+
+## plot Figure 3/panel E instead of panel D
+# grid.arrange(plotA, plotB, plotC, plotNI, ncol = 2, padding = NULL)
+
+## plot unique possible peptide reads instead of panel D
+# grid.arrange(plotA, plotB, plotC, plotPC, ncol = 2, padding = NULL)
+
+## plot Figure 3 only
+# grid.arrange(plotNI, ncol = 1, padding = NULL)
+
+## plot possible reads only
+# grid.arrange(plotPC, ncol = 1, padding = NULL)
