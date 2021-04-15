@@ -4,7 +4,6 @@ library(grid)
 library(gridExtra)
 library(dplyr)
 
-setwd('C:/Users/magnus/Desktop/Next Generation Proteomics/For_GitHub')
 N_PROTEINS <- 20322 # (maximum) number of proteins that could be identified (for reference)
 
 make_df <- function(file_1, file_2, file_3) {
