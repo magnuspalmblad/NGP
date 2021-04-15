@@ -12,5 +12,17 @@ max50_missed0.csv 400 simulations of reading 1-20 amino acids, maximum read leng
 read4_max5_100_missed1.csv 400 simulations of reading 4 amino acids, maximum read length 5-100 and allowing 1 missed tryptic cleavage
 read10_max5_100_missed1.csv 400 simulations of reading 10 amino acids, maximum read length 5-100 and allowing 1 missed tryptic cleavage
 non_ideal_max50_missed1_first20.csv 20 simulations of reading 1-20 amino acids, maximum read length 50 and allowing 1 missed tryptic cleavage under non-ideal conditions
+trypsin_read4_max50_missed0.csv 100 matching simulations reading 4 amino acids, maximum length 50 and allowing 0 missed cleavage with trypsin
+trypsin_read5_max50_missed0.csv 100 matching simulations reading 5 amino acids, maximum length 50 and allowing 0 missed cleavage with trypsin
+trypsin_read6_max50_missed0.csv 100 matching simulations reading 6 amino acids, maximum length 50 and allowing 0 missed cleavage with trypsin
+trypsin_read4_max50_missed1.csv 100 matching simulations reading 4 amino acids, maximum length 50 and allowing 1 missed cleavage with trypsin
+trypsin_read5_max50_missed1.csv 100 matching simulations reading 5 amino acids, maximum length 50 and allowing 1 missed cleavage with trypsin
+trypsin_read6_max50_missed1.csv 100 matching simulations reading 6 amino acids, maximum length 50 and allowing 1 missed cleavage with trypsin
+CNBr_read4_max50_missed0.csv 100 matching simulations reading 4 amino acids, maximum length 50 and allowing 0 missed cleavage with CNBr
+CNBr_read5_max50_missed0.csv 100 matching simulations reading 5 amino acids, maximum length 50 and allowing 0 missed cleavage with CNBr
+CNBr_read6_max50_missed0.csv 100 matching simulations reading 6 amino acids, maximum length 50 and allowing 0 missed cleavage with CNBr
+CNBr_read4_max50_missed1.csv 100 matching simulations reading 4 amino acids, maximum length 50 and allowing 1 missed cleavage with CNBr
+CNBr_read5_max50_missed1.csv 100 matching simulations reading 5 amino acids, maximum length 50 and allowing 1 missed cleavage with CNBr
+CNBr_read6_max50_missed1.csv 100 matching simulations reading 6 amino acids, maximum length 50 and allowing 1 missed cleavage with CNBr
 
 The files ending in "_choices" are the corresponding selections of readable amino acids.
