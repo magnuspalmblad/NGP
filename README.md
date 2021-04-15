@@ -18,4 +18,6 @@ The seed for the random number generator is set by set.seed(). Running simulatio
 
 The "plots.R" makes pretty visualizations from the simulations using ggplot2. It also uses multidimensional linear regression to determine the relative discrimination power of the different amino acids. This R script was used to produce the figures in the JPR technical note describing the generic simulations of single-molecule/next-generation proteomics.
 
+The "plot_cleavage_comparisons.R" analyzes and plots results from six matching 100X matching simulations (same 100 selections of 4, 5 and 6 amino acids), comparing the relative discrimination power of the 20 amino acids for trypsin (cleavage C-termially or R and K, not before P) and CNBr (C-terminally of M) with 0 or 1 missed cleavage allowed.
+
 The scripts are written in R for maximum readability. For deeper simulations, refactoring in C/C++ will likely be beneficial.
