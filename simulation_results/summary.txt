@@ -30,5 +30,11 @@ AspN_read6_max50_missed0.csv 100 matching simulations reading 6 amino acids, max
 AspN_read4_max50_missed1.csv 100 matching simulations reading 4 amino acids, maximum length 50 and allowing 1 missed cleavage with AspN
 AspN_read5_max50_missed1.csv 100 matching simulations reading 5 amino acids, maximum length 50 and allowing 1 missed cleavage with AspN
 AspN_read6_max50_missed1.csv 100 matching simulations reading 6 amino acids, maximum length 50 and allowing 1 missed cleavage with AspN
+neutrophil_elastase_read4_max50_missed0.csv 100 matching simulations reading 4 amino acids, maximum length 50 and allowing 0 missed cleavage with neutrophil_elastase
+neutrophil_elastase_read5_max50_missed0.csv 100 matching simulations reading 5 amino acids, maximum length 50 and allowing 0 missed cleavage with neutrophil_elastase
+neutrophil_elastase_read6_max50_missed0.csv 100 matching simulations reading 6 amino acids, maximum length 50 and allowing 0 missed cleavage with neutrophil_elastase
+neutrophil_elastase_read4_max50_missed1.csv 100 matching simulations reading 4 amino acids, maximum length 50 and allowing 1 missed cleavage with neutrophil_elastase
+neutrophil_elastase_read5_max50_missed1.csv 100 matching simulations reading 5 amino acids, maximum length 50 and allowing 1 missed cleavage with neutrophil_elastase
+neutrophil_elastase_read6_max50_missed1.csv 100 matching simulations reading 6 amino acids, maximum length 50 and allowing 1 missed cleavage with neutrophil_elastase
 
 The files ending in "_choices" are the corresponding selections of readable amino acids.
