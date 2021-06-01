@@ -36,5 +36,14 @@ neutrophil_elastase_read6_max50_missed0.csv 100 matching simulations reading 6 a
 neutrophil_elastase_read4_max50_missed1.csv 100 matching simulations reading 4 amino acids, maximum length 50 and allowing 1 missed cleavage with neutrophil_elastase
 neutrophil_elastase_read5_max50_missed1.csv 100 matching simulations reading 5 amino acids, maximum length 50 and allowing 1 missed cleavage with neutrophil_elastase
 neutrophil_elastase_read6_max50_missed1.csv 100 matching simulations reading 6 amino acids, maximum length 50 and allowing 1 missed cleavage with neutrophil_elastase
+max10_missed1_averages.csv mean number of proteotypic PPRMs per protein, maximum length 10 and allowing 1 missed cleavage with trypsin
+max10_missed1_unique.csv number of possible unique PPRMs, maximum length 10 and allowing 1 missed cleavage with trypsin
+max20_missed1_averages.csv mean number of proteotypic PPRMs per protein, maximum length 20 and allowing 1 missed cleavage with trypsin
+max20_missed1_unique.csv number of possible unique PPRMs, maximum length 20 and allowing 1 missed cleavage with trypsin
+max50_missed1_averages.csv mean number of proteotypic PPRMs per protein, maximum length 50 and allowing 1 missed cleavage with trypsin
+max50_missed1_unique.csv number of possible unique PPRMs, maximum length 50 and allowing 1 missed cleavage with trypsin
+max50_missed1_nonideal.csv 400 simulations of reading 1-20 amino acids, maximum read length 50 and allowing 1 missed tryptic cleavage under non-ideal conditions
+any_length_missed1_unique.csv number of possible unique PPRMs, no maximum length but allowing 1 missed cleavage with trypsin
+non_ideal_any_length_missed1_unique.csv umber of possible unique PPRMs, no maximum length but allowing 1 missed cleavage with trypsin under non-ideal conditions
 
 The files ending in "_choices" are the corresponding selections of readable amino acids.
